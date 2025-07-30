@@ -32,7 +32,7 @@ metrics:
   serviceMonitor:
     # If you are using the Prometheus Operator, set this to true to create a ServiceMonitor.
     # We are temporarily disabling this because the Prometheus Operator, which provides the ServiceMonitor CRD, must be installed first.
-    enabled: true
+    enabled: false
     # The namespace where your Prometheus Operator is running.
     namespace: monitoring
   # Annotations for Prometheus to discover and scrape the metrics endpoint.
