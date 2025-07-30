@@ -1,0 +1,43 @@
+## Redis High Availability Configuration
+## values.yaml
+
+# Global settings
+global:
+  redis:
+    # Set a password for Redis. Replace 'YOUR_PASSWORD' with a strong password.
+    password: "redis-123"
+
+# Architecture configuration: 'replication' for master-slave with sentinel.
+architecture: replication
+
+# Sentinel configuration
+sentinel:
+  enabled: true
+  # Number of Sentinel nodes. 3 is recommended for a robust quorum.
+  replicas: 3
+  # The name of the master group that Sentinel will monitor.
+  masterSet: mymaster
+  # The minimum number of Sentinels that must agree on the state of the master.
+  quorum: 2
+
+# Replica configuration
+replica:
+  # Number of Redis replica nodes.
+  replicaCount: 3
+
+# Prometheus metrics exporter settings
+metrics:
+  enabled: true
+  # The Prometheus exporter sidecar will be deployed.
+  serviceMonitor:
+    # If you are using the Prometheus Operator, set this to true to create a ServiceMonitor.
+    # We are temporarily disabling this because the Prometheus Operator, which provides the ServiceMonitor CRD, must be installed first.
+    enabled: true
+    # The namespace where your Prometheus Operator is running.
+    namespace: monitoring
+  # Annotations for Prometheus to discover and scrape the metrics endpoint.
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "9121"
+    prometheus.io/path: "/metrics"
+
