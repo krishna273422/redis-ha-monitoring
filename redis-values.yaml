@@ -4,7 +4,7 @@
 # Global settings
 global:
   redis:
-    # Set a password for Redis. Replace 'YOUR_PASSWORD' with a strong password.
+    # Set a password for Redis. Replace with a strong password.
     password: "redis-123"
 
 # Architecture configuration: 'replication' for master-slave with sentinel.
